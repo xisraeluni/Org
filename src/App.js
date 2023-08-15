@@ -130,6 +130,18 @@ function App() {
     actualizarEquipos([...equipos, { ...nuevoEquipo, id: uuid() }])
   }
 
+  const like = (id) => {
+    console.log("like", id);
+    const colaboradoresActualizados = colaboradores.map((colaborador) => {
+      if (colaborador.id === id){
+        colaborador.fav = !colaborador.fav
+      }
+      return colaborador
+    })
+
+    actualizarColaboradores(colaboradoresActualizados)
+  }
+
   return (
     <div>
       <Header />
@@ -150,6 +162,7 @@ function App() {
           colaboradores={colaboradores.filter(colaborador => colaborador.equipo === equipo.titulo)}
           eliminarColaborador={eliminarColaborador}
           actualizarColor={actualizarColor}
+          like={like}
         />
         )
       }
